@@ -3,6 +3,10 @@ const message = document.getElementById('message');
 const button = document.getElementById('submitButton');
 const statusMessage = document.getElementById('status');
 
+const loadButton = document.getElementById('loadButton');
+const fileContent = document.getElementById('fileContent');
+const loadStatus = document.getElementById('loadStatus');
+
 // Берём базовый URL из window.APP_CONFIG (задаётся в index.html).
 // Если по какой-то причине не задан — падаем на localhost:8000.
 const API_BASE = (window.APP_CONFIG && window.APP_CONFIG.apiBase)
@@ -40,5 +44,57 @@ form.addEventListener('submit', async (event) => {
 
     } finally {
         button.disabled = false;
+    }
+});
+
+
+loadButton.addEventListener('click', async () => {
+    loadButton.disabled = true;
+    loadStatus.className = '';
+    loadStatus.textContent = 'Загрузка...';
+    fileContent.value = '';
+
+    try {
+        const response = await fetch(`${API_BASE}/api/data`, { method: 'GET' });
+
+        let result = null;
+        try {
+            result = await response.json();
+        } catch (_) {
+            // не JSON — оставляем result = null
+        }
+
+        if (response.status === 404) {
+            const detail = (result && (result.detail || result.error))
+                || 'Записи в файле отсутствуют';
+            loadStatus.className = 'error';
+            loadStatus.textContent = detail;
+            return;
+        }
+
+        if (!response.ok) {
+            const detail = (result && (result.detail || result.error))
+                || 'Ошибка сервера';
+            throw new Error(detail);
+        }
+
+        const content = (result && result.content) || '';
+
+        if (!content.trim()) {
+            loadStatus.className = 'error';
+            loadStatus.textContent = 'Записи в файле отсутствуют';
+            return;
+        }
+
+        fileContent.value = content;
+        loadStatus.className = 'success';
+        loadStatus.textContent = 'Данные успешно загружены.';
+
+    } catch (error) {
+        loadStatus.className = 'error';
+        loadStatus.textContent = 'Не удалось получить данные: ' + error.message;
+
+    } finally {
+        loadButton.disabled = false;
     }
 });

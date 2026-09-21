@@ -16,8 +16,18 @@
       <button id="submitButton" type="submit">Отправить</button>
       <p id="status" role="status" aria-live="polite"></p>
     </form>
+
+    <hr class="divider">
+
+    <section class="reader">
+      <h2>Чтение данных</h2>
+      <p class="description">Нажмите кнопку, чтобы получить текущее содержимое файла data.txt с сервера.</p>
+      <button id="loadButton" type="button">Прочитать data.txt</button>
+      <label for="fileContent">Содержимое data.txt</label>
+      <textarea id="fileContent" readonly placeholder="Здесь появится содержимое файла..."></textarea>
+      <p id="loadStatus" role="status" aria-live="polite"></p>
+    </section>
   </main>
-  <script>window.APP_CONFIG = { apiBase: "http://localhost:8000" };</script>
   <script src="./config.js"></script>
   <script src="./script.js"></script>
 </body>

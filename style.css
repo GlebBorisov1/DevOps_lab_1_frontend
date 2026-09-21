@@ -30,6 +30,11 @@ h1 {
     font-size: 28px;
 }
 
+h2 {
+    margin: 0 0 8px;
+    font-size: 20px;
+}
+
 .description {
     margin: 0 0 24px;
     color: #647089;
@@ -87,7 +92,8 @@ button:disabled {
     opacity: .65;
 }
 
-#status {
+#status,
+#loadStatus {
     min-height: 24px;
     margin: 16px 0 0;
     font-size: 14px;
@@ -99,4 +105,32 @@ button:disabled {
 
 .error {
     color: #c53030;
+}
+
+.divider {
+    margin: 32px 0;
+    border: 0;
+    border-top: 1px solid #e1e7f0;
+}
+
+.reader textarea {
+    min-height: 180px;
+    background: #f8fafc;
+    color: #334155;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: 13px;
+    white-space: pre;
+}
+
+.reader button {
+    background: #eef2ff;
+    color: #4f46e5;
+}
+
+.reader button:hover {
+    background: #e0e7ff;
+}
+
+.reader label {
+    margin-top: 16px;
 }
