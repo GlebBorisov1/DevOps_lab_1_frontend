@@ -16,6 +16,12 @@ body {
     padding: 24px;
 }
 
+/* React-обёртка: ведёт себя как прозрачный контейнер,
+   чтобы .card оставалась прямым грид-элементом body */
+#root {
+    display: contents;
+}
+
 .card {
     width: min(100%, 560px);
     padding: 32px;
@@ -25,15 +31,8 @@ body {
     box-shadow: 0 18px 50px rgba(35, 55, 90, .10);
 }
 
-h1 {
-    margin: 0 0 8px;
-    font-size: 28px;
-}
-
-h2 {
-    margin: 0 0 8px;
-    font-size: 20px;
-}
+h1 { margin: 0 0 8px; font-size: 28px; }
+h2 { margin: 0 0 8px; font-size: 20px; }
 
 .description {
     margin: 0 0 24px;
@@ -79,18 +78,9 @@ button {
     transition: background .2s, transform .1s;
 }
 
-button:hover {
-    background: #4338ca;
-}
-
-button:active {
-    transform: translateY(1px);
-}
-
-button:disabled {
-    cursor: wait;
-    opacity: .65;
-}
+button:hover { background: #4338ca; }
+button:active { transform: translateY(1px); }
+button:disabled { cursor: wait; opacity: .65; }
 
 #status,
 #loadStatus {
@@ -99,13 +89,8 @@ button:disabled {
     font-size: 14px;
 }
 
-.success {
-    color: #16803c;
-}
-
-.error {
-    color: #c53030;
-}
+.success { color: #16803c; }
+.error   { color: #c53030; }
 
 .divider {
     margin: 32px 0;
@@ -127,10 +112,6 @@ button:disabled {
     color: #4f46e5;
 }
 
-.reader button:hover {
-    background: #e0e7ff;
-}
+.reader button:hover { background: #e0e7ff; }
 
-.reader label {
-    margin-top: 16px;
-}
+.reader label { margin-top: 16px; }
